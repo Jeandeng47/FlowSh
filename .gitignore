@@ -1,0 +1,43 @@
+# ========== Build artifacts ==========
+
+# Compiled binaries and build directories
+build/
+
+# Object files
+*.o
+
+# Static libraries
+*.a
+*.so
+
+# Executables
+flowsh
+test_sh
+
+*_test
+
+# ========== IDE / Editor ==========
+# VSCode
+.vscode/
+
+# Vim swap files, Emacs temp files, etc.
+*~
+*.swp
+*.swx
+*.swo
+
+# JetBrains IDE
+.idea/
+
+# ========== OS files ==========
+# macOS Finder
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db
+
+# ========== Misc ==========
+tags
+cscope.out
+*.log
+coverage/
