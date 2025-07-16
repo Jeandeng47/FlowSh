@@ -1,20 +1,71 @@
-#include "parser.h"
+#include "sh.h"
 #include <stdio.h>
 
-typedef int (*test_func)(void);
 
+// ---------- Test function prototypes ----------
+// test tokenize
 int test_empty_tokens(void);
 int test_leading_whitespace_tokens(void);
 int test_multiple_words_tokens(void);
 int test_pipe_and_redirect_tokens(void);
 int test_complex_tokens(void);
 
+// test parse_exec
+
+int test_redirect_in(void);
+
+int test_exec_no_args(void);
+int test_exec_single_args(void);
+int test_exec_multiple_args(void);
+int test_exec_stop_at_pipe(void);
+
+int test_pipe_no_pipe(void);
+int test_pipe_simple(void);
+int test_pipe_multiple(void);
+
+int test_list_single(void);
+int test_list_multiple(void);
+int test_list_pipe(void);
+
+
+
+// ---------- Test names and function pointers ----------
+const char *test_names[] = {
+
+    "test_redirect_in",
+
+    "test_exec_no_args",
+    "test_exec_single_args",
+    "test_exec_multiple_args",
+    "test_exec_stop_at_pipe",
+
+    "test_pipe_no_pipe",
+    "test_pipe_simple",
+    "test_pipe_multiple",
+
+    "test_list_single",
+    "test_list_multiple",
+    "test_list_pipe",
+
+};
+
+typedef int (*test_func)(void);
 test_func tests[] = {
-    test_empty_tokens,
-    test_leading_whitespace_tokens,
-    test_multiple_words_tokens,
-    test_pipe_and_redirect_tokens,
-    test_complex_tokens
+    test_redirect_in,
+    
+    test_exec_no_args,
+    test_exec_single_args,
+    test_exec_multiple_args,
+    test_exec_stop_at_pipe,
+
+    test_pipe_no_pipe,
+    test_pipe_simple,
+    test_pipe_multiple,
+
+    test_list_single,
+    test_list_multiple,
+    test_list_pipe,
+    
 };
 
 int main(void) {
@@ -24,9 +75,9 @@ int main(void) {
     for (int i = 0; i < num_tests; i++) {
         if (tests[i]() == 0) {
             passed++;
-            printf("Test %d passed\n", i + 1);
+            printf("Test %s passed\n", test_names[i]);
         } else {
-            printf("Test %d failed\n", i + 1);
+            printf("Test %s failed\n", test_names[i]);
         }
     }
     printf("%d out of %d tests passed\n", passed, num_tests);
